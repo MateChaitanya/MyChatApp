@@ -26,8 +26,9 @@ This Android Chat Application allows users to register and engage in real-time c
 5. Build and run the application on an Android device or emulator.
 
 ## Screenshots
-[![Screenshot 1](screenshots/screenshot1.png)](screenshots/screenshot1.png)
-*Add a brief description of the screenshot.*
+[![Splash Screen](![Screenshot_20231012_184242](https://github.com/MateChaitanya/MyChatApp/assets/99747639/145567e3-74b9-4f30-ac1a-f7433094a957)
+)](screenshots/screenshot1.png)
+*This is the first page of my chat app.*
 
 [![Screenshot 2](screenshots/screenshot2.png)](screenshots/screenshot2.png)
 *Add a brief description of the screenshot.*
@@ -35,8 +36,6 @@ This Android Chat Application allows users to register and engage in real-time c
 ## Contributing
 Contributions to this project are welcome! If you have any suggestions, enhancements, or bug fixes, feel free to open an issue or create a pull request.
 
-## License
-This project is licensed under the [MIT License](LICENSE).
 
 ---
 
