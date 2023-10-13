@@ -32,8 +32,13 @@ This Android Chat Application allows users to register and engage in real-time c
 
 *This is the first page of my chat app.*
 
-[![Screenshot 2](screenshots/screenshot2.png)](screenshots/screenshot2.png)
-*Add a brief description of the screenshot.*
+[Login Page]
+
+![Screenshot_20231013_104423](https://github.com/MateChaitanya/MyChatApp/assets/99747639/f17d95e6-0dd6-4ecb-bc9b-5d267933e499)
+
+[Registration Page]
+
+![Screenshot_20231013_104328](https://github.com/MateChaitanya/MyChatApp/assets/99747639/64efa7f0-003d-4f94-8b50-fe443021f1cb)
 
 ## Contributing
 Contributions to this project are welcome! If you have any suggestions, enhancements, or bug fixes, feel free to open an issue or create a pull request.
