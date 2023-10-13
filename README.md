@@ -1,4 +1,4 @@
-![Screenshot_20231013_104423](https://github.com/MateChaitanya/MyChatApp/assets/99747639/41235a28-7a77-4f90-838b-ac82883aaa4f)# Android Chat Application
+# Android Chat Application
 
 ## Overview
 This Android Chat Application allows users to register and engage in real-time chatting with each other. Users can create accounts, log in, and start conversing with fellow users within the app.
