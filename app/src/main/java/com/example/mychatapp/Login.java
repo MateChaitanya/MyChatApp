@@ -16,7 +16,5 @@ public class Login extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.hide();
         }
-
-
     }
 }
