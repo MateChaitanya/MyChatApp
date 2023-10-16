@@ -17,10 +17,15 @@ public class MainActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() == null){
-            Intent intent = new Intent(MainActivity.this,Login.class);
+            // User is not authenticated, redirect to login
+            Intent intent = new Intent(MainActivity.this, Login.class);
             startActivity(intent);
-
+            finish();
+        } else {
+            // User is authenticated, redirect to the home screen or another appropriate screen
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);  // Adjust the target activity accordingly
+            startActivity(intent);
+            finish();
         }
-
     }
 }

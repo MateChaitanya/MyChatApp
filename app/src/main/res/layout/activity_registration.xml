@@ -64,7 +64,7 @@
 
     <!-- CircleImageView for Profile -->
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profilerg"
+        android:id="@+id/profilerg0"
         android:layout_width="138dp"
         android:layout_height="117dp"
         android:src="@drawable/photocamera"
@@ -138,7 +138,7 @@
     <!-- Button for Signup -->
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/rgemail"
         android:layout_width="254dp"
         android:layout_height="49dp"
         android:ems="10"
@@ -154,7 +154,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/rgPassword"
         android:layout_width="258dp"
         android:layout_height="59dp"
         android:ems="10"
@@ -169,7 +169,7 @@
         app:layout_constraintVertical_bias="0.573" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/rgrePassword"
         android:layout_width="258dp"
         android:layout_height="59dp"
         android:ems="10"
@@ -184,7 +184,7 @@
         app:layout_constraintVertical_bias="0.651" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signupbutton"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="@dimen/_45sdp"
         android:backgroundTint="@color/black"
@@ -198,25 +198,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.895" />
 
-    <!-- TextView for "Login" -->
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="@dimen/_124sdp"
-        android:layout_height="@dimen/_24sdp"
+
+    <!-- EditText for UserName -->
+    <Button
+        android:id="@+id/loginbut"
+        android:layout_width="164dp"
+        android:layout_height="41dp"
         android:gravity="center"
         android:text="Login!"
         android:textColor="@color/black"
+        android:backgroundTint="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.957" />
+        app:layout_constraintVertical_bias="0.981" />
 
-    <!-- EditText for UserName -->
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/rgusername"
         android:layout_width="251dp"
         android:layout_height="38dp"
         android:ems="10"
