@@ -17,7 +17,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -66,13 +65,10 @@ public class Registration extends AppCompatActivity {
         rg_profileImg = findViewById(R.id.profilerg0);
         rg_signup = findViewById(R.id.signupbutton);
 
-        loginbut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Registration.this, Login.class);
-                startActivity(intent);
-                finish();
-            }
+        loginbut.setOnClickListener(view -> {
+            Intent intent = new Intent(Registration.this, Login.class);
+            startActivity(intent);
+            finish();
         });
 
         rg_signup.setOnClickListener(new View.OnClickListener() {
@@ -93,70 +89,67 @@ public class Registration extends AppCompatActivity {
                 } else if (!Password.equals(cPassword)) {
                     rg_password.setError("The Password Doesn't Match");
                 } else {
-                    auth.createUserWithEmailAndPassword(email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                String id = task.getResult().getUser().getUid();
-                                DatabaseReference reference = database.getReference().child("user").child(id);
-                                StorageReference storageReference = storage.getReference().child("Upload").child(id);
+                    auth.createUserWithEmailAndPassword(email, Password).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            String id = task.getResult().getUser().getUid();
+                            DatabaseReference reference = database.getReference().child("users").child(id);
+                            StorageReference storageReference = storage.getReference().child("Upload").child(id);
 
-                                if (imageURI != null) {
-                                    storageReference.putFile(imageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                            if (task.isSuccessful()) {
-                                                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                    @Override
-                                                    public void onSuccess(Uri uri) {
-                                                        imageuri = uri.toString();
+                            if (imageURI != null) {
+                                storageReference.putFile(imageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Uri> task) {
+                                                    if (task.isSuccessful()) {
+                                                        imageuri = task.getResult().toString();
                                                         Users users = new Users(id, name, email, Password, cPassword, imageuri, status);
 
-                                                        // Store user data in the Realtime Database
                                                         reference.setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                 if (task.isSuccessful()) {
-                                                                    // Redirect to MainActivity after successful registration
+                                                                    // Navigate to the MainActivity after successful registration
                                                                     Intent intent = new Intent(Registration.this, MainActivity.class);
                                                                     startActivity(intent);
                                                                     finish();
                                                                 } else {
-                                                                    Toast.makeText(Registration.this, "Error in creating the users " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                                                    Log.e("Registration", "Error in creating the users: " + task.getException().getMessage());
+                                                                    Toast.makeText(Registration.this, "Error in creating the user: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                                    Log.e("Registration", "Error in creating the user: " + task.getException().getMessage());
                                                                 }
                                                             }
                                                         });
                                                     }
-                                                });
-                                            } else {
-                                                String status = "Hey, I'm Using This Application";
-                                                imageuri = "https://firebasestorage.googleapis.com/v0/b/mychat-app-9c2f4.appspot.com/o/male-icon-19%20(1).png?alt=media&token=73f209a3-17e7-4d05-8c57-251b21e55a4b";
-                                                Users users = new Users(id, name, email, Password, imageuri, status, status);
-
-                                                // Store user data in the Realtime Database
-                                                reference.child("users").setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful()) {
-                                                            // Redirect to MainActivity after successful registration
-                                                            Intent intent = new Intent(Registration.this, MainActivity.class);
-                                                            startActivity(intent);
-                                                            finish();
-                                                        } else {
-                                                            Toast.makeText(Registration.this, "Error in creating the users ", Toast.LENGTH_SHORT).show();
-                                                            Log.e("Registration", "Error in creating the users: " + task.getException().getMessage());
-                                                        }
-                                                    }
-                                                });
-                                            }
+                                                }
+                                            });
                                         }
-                                    });
-                                }
+                                    }
+                                });
                             } else {
-                                Toast.makeText(Registration.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                Log.e("Registration", "Error during registration: " + task.getException().getMessage());
+                                String status1 = "Hey, I'm Using This Application";
+                                imageuri = "https://firebasestorage.googleapis.com/v0/b/mychat-app-9c2f4.appspot.com/o/male-icon-19%20(1).png?alt=media&token=73f209a3-17e7-4d05-8c57-251b21e55a4b";
+                                Users users = new Users(id, name, email, Password, imageuri, status1, status1);
+
+                                reference.child("users").setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            // Navigate to the MainActivity after successful registration
+                                            Intent intent = new Intent(Registration.this, Login.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            Toast.makeText(Registration.this, "Error in creating the user", Toast.LENGTH_SHORT).show();
+                                            Log.e("Registration", "Error in creating the user: " + task.getException().getMessage());
+                                        }
+                                    }
+                                });
                             }
+                        } else {
+                            Toast.makeText(Registration.this, "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.e("Registration", "Error during registration: " + task.getException().getMessage());
                         }
                     });
                 }
